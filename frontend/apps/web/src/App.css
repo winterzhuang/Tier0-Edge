@@ -1,0 +1,74 @@
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+  z-index: 99;
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+  background: #d3d3d3;
+  cursor: pointer;
+}
+
+::-webkit-scrollbar-track {
+  margin: 4px 0;
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a5a5a5;
+}
+
+.ant-message {
+  z-index: 9001;
+}
+
+.CodeMirror-hints {
+  z-index: 10000;
+}
+
+::selection {
+  /* Firefox */
+  background: var(--supos-theme-color);
+  color: #fff;
+}
+
+/* autoprefixer: ignore next */
+::-webkit-selection {
+  /* Chrome, Safari, Opera */
+  background: var(--supos-theme-color);
+  color: #fff;
+}
+
+body {
+  background-color: var(--supos-bg-color) !important;
+  color: var(--supos-text-color, #161616) !important;
+}
+
+.ant-btn > span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ant-form-item-horizontal > .ant-row {
+  align-items: center;
+
+  .ant-form-item-label > label {
+    height: auto;
+    min-height: 32px;
+  }
+}
+
+.ant-modal-confirm-btns {
+  .ant-btn {
+    max-width: 48%;
+  }
+}
+
+/* .ant-table-cell-scrollbar { */
+
+/*  visibility: hidden; */
+
+/* } */
