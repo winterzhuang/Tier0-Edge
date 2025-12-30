@@ -11,7 +11,7 @@
 ---
 
 ## Architecture Overview
-<img width="750" src="./deploy/assert/image/function_update.png" />
+<img width="750" src="https://tier0saas1.oss-cn-hangzhou.aliyuncs.com/55.png" />
 
 - **Source Flow**  
   Serves as the connection pipeline to devices and systems. It handles real-time protocol translation into JSON payloads. Built entirely on Node-RED.
@@ -20,10 +20,9 @@
   The core of Tier0. A semantic MQTT broker and parser that models data using topic hierarchies and structured JSON payloads.
 
 - **Sink**  
-  The storage layer of Tier0.
-  - Time-series Namespace values are stored in **TimescaleDB**.
-  - Relational Namespace values (e.g., CRM data) are stored in **PostgreSQL**.  
-    This enables efficient querying and compression.
+  The storage layer of Tier0, which enables efficient data querying and compression.
+  - TTSDB is for real-time operational metrics.
+  - S3 is the system of record for all historical and analytical data.
 
 - **Event Flow**  
   Orchestrates Namespaces into higher-level event/information flows. Supports merging JSON payloads and appending system-generated prompts for LLM-powered optimization.
