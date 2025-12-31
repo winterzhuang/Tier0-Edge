@@ -57,7 +57,7 @@
 2. Navigate to the `Tier0` directory and edit environment variables in the `.env` file.
    ```bash
    cd Tier0-Edge/deploy
-   vi .env
+   vi .env.default
    ```
   - Update `VOLUMES_PATH` (directory for storing project data).
   - Update `ENTRANCE_DOMAIN` (frontend entry domain/IP address).
@@ -78,7 +78,7 @@
 2. Navigate to the `Tier0` directory and edit environment variables in the `.env` file.
    ```bash
    cd Tier0-Edge/deploy
-   vi .env
+   vi .env.default
    ```
   - Update `OS_PLATFORM_TYPE` = windows
   - Update `VOLUMES_PATH` (directory for storing project data).
