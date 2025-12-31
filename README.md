@@ -90,7 +90,7 @@
    ```
 ### 3. Access the Platform
 1. Visit `http://<YOUR-DOMAIN>:<YOUR-PORT>` in your browser (based on ENTRANCE_DOMAIN and ENTRANCE_PORT in `.env`).
-2. Sign in to Tier0 with default account and password: `supos/supos`.
+2. Sign in to Tier0 with default account and password: `tier0/tier0`.
 ---
 
 ## Important Startup Operations
@@ -132,40 +132,6 @@
 4. Save the template file, and then click **Import** on the **Namespace** page.
 5. Select the template, and then click **Save**.
 
-#### 1.3 Generating Models through JSON
-1. Log in to Tier0, and then select **UNS** > **Namespace**.
-2. Click <img src="http://communityimage2.oss-cn-hangzhou.aliyuncs.com/40.png" /> on the **Topic** page.
-
-<img width="350" src="http://communityimage2.oss-cn-hangzhou.aliyuncs.com/40-1.png" />
-
-3. Select the data type, and then write JSON text for the model according to the data tree structure.
-
-```json
-{
-    "Factory1": {
-        "workshop1": {
-            "equipment1": {
-                "CNC1": [
-                    {
-                        "actualRuntime1": 1380,
-                        "plannedRuntime1": 1440
-                    }
-                ]
-            }
-        }
-    }
-}
-```
-
-<img width="450" src="http://communityimage2.oss-cn-hangzhou.aliyuncs.com/41.png" />
-
-4. Click **Next**, and select the model on the left side.
-
-> Click on each data level, you can change its information and add attributes on the right side.
-
-<img width="450" src="http://communityimage2.oss-cn-hangzhou.aliyuncs.com/42.png" />
-
-5. Click **Save**.
 
 ### 2. Model Data Source Connection
 > Connect real data to make models alive.
