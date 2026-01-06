@@ -47,7 +47,14 @@ func (l *LogConfigLogic) LogConfig(req *types.LogConfigRequest) (resp *types.Log
 	}
 	return &types.LogConfigResponse{Level: loggerlevel.CurrentLevel}, nil
 }
-
+func SetupLog(logConfig logx.LogConf) {
+	err := logx.SetUp(logConfig)
+	if err != nil {
+		log.Println("SetUpLogErr: ", err)
+	} else {
+		SetLogLevel(logConfig.Level)
+	}
+}
 func SetLogLevel(level string) bool {
 	level = strings.ToLower(strings.TrimSpace(level))
 	var levelInt = uint32(0)
@@ -61,6 +68,10 @@ func SetLogLevel(level string) bool {
 		levelInt = logx.ErrorLevel
 	case levelSevere:
 		levelInt = logx.SevereLevel
+	case "stat":
+		loggerlevel.DoStats = true
+		log.Println("Set DoStats to true")
+		return true
 	default:
 		ok = false
 	}
@@ -68,6 +79,7 @@ func SetLogLevel(level string) bool {
 		loggerlevel.CurrentLevel = level
 		logx.SetLevel(levelInt)
 	}
+	loggerlevel.DoStats = false
 	log.Println("Set log level to ", loggerlevel.CurrentLevel, ok)
 	return ok
 }
