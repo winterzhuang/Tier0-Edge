@@ -45,15 +45,29 @@ func (l *CreateSourceMockFlowLogic) CreateSourceMockFlow(req *types.SourceFlowMo
 	if alias == "" || path == "" {
 		return nil, errors.Parameter.WithMsg("error.sys.parameterError")
 	}
-	tpl, err := templates.Load("mock_metrics.json.tpl")
+	tpl, err := templates.Load("relational-emqx.json.tpl")
 	if err != nil {
 		l.Errorf("load mock template failed: %v", err)
 		return nil, errors.System.AddDetail(err)
 	}
+
+	unsRepo := relationDB.NewUnsNamespaceRepo()
+	uns, err := unsRepo.GetByAlias(relationDB.GetDb(l.ctx), alias)
+	if err != nil {
+		return nil, err
+	}
+	if uns == nil {
+		return nil, errors.NotFind.WithMsg("uns.model.not.found")
+	}
+
+	// Build payload content from fields
+	payload := buildPayloadFromFields(uns.GetFields())
+
 	rendered := templates.RenderDollar(tpl, map[string]string{
 		"uns_path":         path,
+		"model_alias":      alias,
 		"alias_path_topic": path,
-		"payload":          "",
+		"payload":          payload,
 		"disabled":         "false",
 		"clientid":         alias,
 	}, flowcommon.GenerateNodeID)
