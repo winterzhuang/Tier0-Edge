@@ -95,6 +95,6 @@ else
 fi
 
 echo -e "      $PLATFORM_URL\n"
-echo -e "    Default user name: tier0\n"
+echo -e "    Default username: tier0\n"
 echo -e "            password: tier0\n"
 echo -e "============================================================"
