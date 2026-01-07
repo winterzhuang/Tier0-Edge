@@ -265,7 +265,7 @@ services:
     deploy:
       resources:
         limits:
-          memory: 768M
+          memory: 2g
         reservations:
           memory: 512M
     environment:
