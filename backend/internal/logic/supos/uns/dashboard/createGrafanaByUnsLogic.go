@@ -60,8 +60,13 @@ func (l *CreateGrafanaByUnsLogic) CreateGrafanaByUns(alias string) (*types.JsonR
 	columns := grafanautil.Fields2Columns(jdbcType, uns.Fields)
 	title := uns.Path
 	schema := "public"
-	table := uns.Alias
+	table := uns.GetTable()
 	tagNameCondition := ""
+
+	// 如果存在表字段名，调整表和条件
+	if strings.TrimSpace(uns.GetTbFieldName()) != "" {
+		tagNameCondition = fmt.Sprintf(" and %s='%d' ", constants.SystemSeqTag, uns.Id)
+	}
 	// 日志输出（Go中使用log包）
 	l.Logger.Debugf(">>>>> create grafana dashboard columns:%s,title:%s,schema:%s,table:%s,tagNameCondition:%s",
 		columns, title, schema, table, tagNameCondition)

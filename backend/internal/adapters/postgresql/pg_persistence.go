@@ -175,13 +175,10 @@ func execBatch(conn *pgxpool.Conn, task batchTask, defaultSchema string, retry i
 		}
 	}
 	if retryTask.batch != nil {
-		tables := base.Map[*serviceApi.UnsData, string](retryTask.uns, func(e *serviceApi.UnsData) string {
-			return e.Uns.Alias
-		})
-		uns := base.Map[*serviceApi.UnsData, types.UnsInfo](retryTask.uns, func(e *serviceApi.UnsData) types.UnsInfo {
+		uns := base.Map[*serviceApi.UnsData, *types.CreateTopicDto](retryTask.uns, func(e *serviceApi.UnsData) *types.CreateTopicDto {
 			return e.Uns
 		})
-		tableInfoMap, er := ListTableInfos(conn, tables)
+		tableInfoMap, er := ListTableInfos(conn, uns)
 		if er != nil {
 			return er
 		}

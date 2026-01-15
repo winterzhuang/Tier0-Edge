@@ -55,9 +55,8 @@ services:
       - TZ=UTC
       - GRPC_POOL_CORE_SIZE=2
       - GRPC_POOL_MAX_SIZE=4
-      - dbDSN=${UNS_DB_URL}
-      - SINK_PG_URL=${SINK_PG_URL}
-      - SINK_TSDB_URL=${SINK_TSDB_URL}
+      - ENV_DB_HOST=postgresql
+      - ENV_DB_PORT=5432
       - NODE_RED_HOST=nodered
       - NODE_RED_PORT=1880
       - SYS_OS_MULTIPLE_TOPIC=false
@@ -75,8 +74,6 @@ services:
     volumes:
       - ${VOLUMES_PATH}/edge/system/:/app/go-edge/system/
       - /etc/docker/certs:/certs
-    ports:
-      - "18998:8080"
     networks:
       - edge_network
     depends_on:
@@ -268,7 +265,7 @@ services:
     deploy:
       resources:
         limits:
-          memory: 2g
+          memory: 1G
         reservations:
           memory: 512M
     environment:

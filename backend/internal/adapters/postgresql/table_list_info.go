@@ -1,6 +1,7 @@
 package postgresql
 
 import (
+	"backend/internal/types"
 	"backend/share/base"
 	"context"
 	"fmt"
@@ -30,14 +31,15 @@ type queryer interface {
 }
 
 // ListTableInfos 列出表信息
-func ListTableInfos(query queryer, tables []string) (map[string]*TableInfo, error) {
-	if tables == nil || len(tables) == 0 {
+func ListTableInfos(query queryer, topics []*types.CreateTopicDto) (map[string]*TableInfo, error) {
+	if topics == nil || len(topics) == 0 {
 		return make(map[string]*TableInfo), nil
 	}
 
 	// 按 schema 分组表名
 	schemaTables := make(map[string]map[string]bool)
-	for _, tableName := range tables {
+	for _, dto := range topics {
+		tableName := dto.GetTable()
 		dot := strings.Index(tableName, ".")
 
 		dbName := "public" // 默认 schema，根据实际情况调整

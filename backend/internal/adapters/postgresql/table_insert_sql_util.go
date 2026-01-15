@@ -13,7 +13,7 @@ func getInsertStatement(uns *types.CreateTopicDto, data []map[string]string) (sq
 	sw := base.StringBuilder{}
 	sw.Grow(64 + len(uns.Fields)*32)
 
-	table := GetFullTableName(uns.GetTable())
+	table := getFullTableName(uns.GetTable())
 	sw.Append("INSERT INTO ").Append(table).Append(" AS t(")
 
 	columns := uns.Fields
@@ -22,7 +22,7 @@ func getInsertStatement(uns *types.CreateTopicDto, data []map[string]string) (sq
 	}
 	sw.SetLast(')').Append(" VALUES ")
 
-	data = DeduplicationById(uns.GetPrimaryField(), data)
+	data = DeduplicationById(uns, data)
 
 	params = make([]interface{}, 0, len(data))
 

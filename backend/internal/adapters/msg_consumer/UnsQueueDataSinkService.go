@@ -42,12 +42,6 @@ func (s *UnsQueueDataSinkService) Sink(unsData []serviceApi.TopicMessage) {
 	if len(unsData) == 0 {
 		return
 	}
-	defer func() {
-		if err := recover(); err != nil {
-			s.log.Errorf("HandleThrow|error=%#v| len=%d", err, len(unsData))
-		}
-	}()
-
 	msgList := make([]*TopicMessage, len(unsData))
 	for i, d := range unsData {
 		dL := make([]*TopicMessage_DataArray, len(d.Data))
@@ -57,8 +51,8 @@ func (s *UnsQueueDataSinkService) Sink(unsData []serviceApi.TopicMessage) {
 				var vStr string
 				if str, ok := v.(string); ok {
 					vStr = str
-				} else if v != nil {
-					vStr = fmt.Sprint(v)
+				} else {
+					vStr = fmt.Sprintf("%v", v)
 				}
 				dataMap[k] = vStr
 			}
@@ -92,7 +86,7 @@ func (s *UnsQueueDataSinkService) OnEventStart100(evt *event.ContextRefreshedEve
 	}
 	s.queue = diskqueue.New("uns", dir,
 		64*1024*1024, 8, maxMsgSize,
-		2500, 5*time.Second, s.log.Debugf, s.log.Errorf)
+		2500, 5*time.Second, logx.Debugf, logx.Errorf)
 	s.run = true
 	go s.fetchData()
 }
@@ -114,8 +108,6 @@ func (s *UnsQueueDataSinkService) fetchData() {
 				size = 0
 				s.persistence(msgToSend)
 				msgToSend = msgToSend[:0]
-			} else if loggerlevel.DoStats {
-				logx.Stat("没数据")
 			}
 		case msg := <-s.queue.ReadChan():
 			var list TopicMessageList

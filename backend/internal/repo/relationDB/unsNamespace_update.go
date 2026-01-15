@@ -216,12 +216,7 @@ func parseColumnName(gormTag string) string {
 	for _, part := range tagParts {
 		part = strings.TrimSpace(part)
 		if strings.HasPrefix(part, "column:") {
-			col := strings.TrimPrefix(part, "column:")
-			fen := strings.Index(col, ";")
-			if fen > 0 {
-				col = col[:fen]
-			}
-			return col
+			return strings.TrimPrefix(part, "column:")
 		}
 	}
 

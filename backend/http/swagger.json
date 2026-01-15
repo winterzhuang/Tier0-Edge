@@ -3784,15 +3784,11 @@
                       "-",
                       "-",
                       "-",
-                      "-",
                       "-"
                     ],
                     "properties": {
                       "-": {
-                        "type": "array",
-                        "items": {
-                          "type": "integer"
-                        }
+                        "type": "integer"
                       },
                       "accessLevel": {
                         "description": "Access level",
@@ -5326,10 +5322,7 @@
               "type": "object",
               "properties": {
                 "-": {
-                  "type": "array",
-                  "items": {
-                    "type": "integer"
-                  }
+                  "type": "integer"
                 },
                 "accessLevel": {
                   "description": "Access level",
@@ -6455,15 +6448,11 @@
                       "-",
                       "-",
                       "-",
-                      "-",
                       "-"
                     ],
                     "properties": {
                       "-": {
-                        "type": "array",
-                        "items": {
-                          "type": "integer"
-                        }
+                        "type": "integer"
                       },
                       "accessLevel": {
                         "description": "Access level",
@@ -8684,15 +8673,11 @@
                 "-",
                 "-",
                 "-",
-                "-",
                 "-"
               ],
               "properties": {
                 "-": {
-                  "type": "array",
-                  "items": {
-                    "type": "integer"
-                  }
+                  "type": "integer"
                 },
                 "accessLevel": {
                   "description": "Access level",
@@ -9388,15 +9373,11 @@
                     "-",
                     "-",
                     "-",
-                    "-",
                     "-"
                   ],
                   "properties": {
                     "-": {
-                      "type": "array",
-                      "items": {
-                        "type": "integer"
-                      }
+                      "type": "integer"
                     },
                     "accessLevel": {
                       "description": "Access level",
@@ -12372,7 +12353,7 @@
       }
     }
   },
-  "x-date": "2026-01-07 14:44:16",
+  "x-date": "2025-12-27 15:42:59",
   "x-description": "This is a goctl generated swagger file.",
   "x-github": "https://github.com/zeromicro/go-zero",
   "x-go-zero-doc": "https://go-zero.dev/",

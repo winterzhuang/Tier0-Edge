@@ -6,25 +6,16 @@ Timeout: 20000
 
 Database:
   DBType: pgsql
-  DSN: postgres://postgres:postgres@100.100.100.20:31014/postgres?search_path=supos
+  DSN: postgres://postgres:postgres@100.100.100.22:34099/postgres?search_path=supos
 
-
-log:
-  ServiceName: uns
-  Mode: console
-  Path: logs
-  Level: debug
-  KeepDays: 7
-
-grafanaUrl: http://localhost:3030
-
+loggerLevel: debug
 export:
   limitSmallFileRows: 50
-sink:
-  postgresql: postgres://postgres:postgres@100.100.100.20:31014/postgres
-  timescaledb: postgres://postgres:postgres@100.100.100.20:31014/postgres
+persistent_url:
+  postgresql: postgres://postgres:postgres@100.100.100.22:34099/postgres
+  timescaledb: postgres://postgres:postgres@100.100.100.22:34099/postgres
 
-#KeycloakDSN: postgres://postgres:postgres@100.100.100.20:31014/keycloak
+#KeycloakDSN: postgres://postgres:postgres@100.100.100.22:34099/keycloak
 CacheRedis:
   - Host: localhost:6379
     Pass:

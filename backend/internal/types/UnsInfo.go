@@ -21,7 +21,6 @@ type UnsInfo interface {
 	GetDataType() *int16
 	GetTable() string
 	GetTbFieldName() string
-	GetTimestampField() string
 	GetParentDataType() *int16
 	GetPathType() int16
 	GetRefers() []*InstanceField

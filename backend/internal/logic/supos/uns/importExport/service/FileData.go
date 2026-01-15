@@ -101,8 +101,8 @@ func node2vo(prop string, i, parent *FileData) *types.CreateTopicDto {
 	case Template:
 		vo.PathType = constants.PathTypeTemplate
 	case UNS:
-		switch strings.ToLower(i.Type) {
-		case TYPE_FILE:
+		switch i.Type {
+		case TYPE_FILE, "file":
 			vo.PathType = constants.PathTypeFile
 			if ok, _ := strconv.ParseBool(os.Getenv("SYS_OS_ENABLE_AUTO_CATEGORIZATION")); ok {
 				if i.ParentDataType == "" {
@@ -110,7 +110,7 @@ func node2vo(prop string, i, parent *FileData) *types.CreateTopicDto {
 					return nil
 				}
 			}
-		case TYPE_FOLDER:
+		case TYPE_FOLDER, "folder":
 			vo.PathType = constants.PathTypeDir
 			if i.Name == "label" || i.Name == "template" {
 				i.Error = I18nUtils.GetMessage("uns.folder.reserved.word")
